@@ -1,0 +1,679 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  overflow: hidden;
+  background: #000;
+}
+/*    1. MÀN HÌNH CHÍNH & CANVAS */
+#startScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 200;
+}
+#startImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#startBtn {
+  position: absolute;
+  bottom: 313px;
+  left: 64%;
+  transform: translateX(100%);
+  font-size: 30px;
+  padding: 5px 25px;
+  font-weight: bold;
+  cursor: pointer;
+  background-image: url('../UI/btn.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  color: transparent; 
+  border: none;
+}
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  display: block;
+}
+/*    2. GIAO DIỆN CHÍNH (UI)*/
+#desktopUI {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
+}
+.icon {
+  color: white;
+  text-align: center;
+  font-size: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+.icon span {
+  display: block;
+  font-size: 12px;
+}
+.icon .app-img {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.icon:hover .app-img {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(255, 255, 255, 0.4);
+}
+/*    3. ĐỒNG HỒ & NHẠC */
+#clock {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: rgba(120, 200, 255, 0.12);
+  border: 1px solid rgba(120, 200, 255, 0.8);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-size: 14px;
+  font-family: monospace;
+  letter-spacing: 1px;
+  z-index: 10;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+#musicPanel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 240px;
+  padding: 12px;
+  background: rgba(120, 200, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(120, 200, 255, 0.3);
+  border-radius: 16px;
+  color: white;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.musicArt img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.musicInfo .title {
+  font-size: 14px;
+  font-weight: bold;
+}
+.musicInfo .subtitle {
+  font-size: 11px;
+  opacity: 0.7;
+}
+.musicControls {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.musicControls button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+  margin: 5px;
+}
+.musicControls button:hover {
+  background: rgba(255,255,255,0.3);
+}
+/*    4. CỬA SỔ APP & ANIMATION CHUNG */
+@keyframes popUp {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.appModal .window, 
+.modal-content, 
+.game-box {
+  animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+}
+.appModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 50;
+}
+.window {
+  position: absolute;
+  top: 120px;
+  left: 150px;
+  width: 1000px;
+  background: rgba(20,20,30,0.95);
+  border-radius: 10px;
+  color: white;
+  overflow: hidden;
+}
+.title-bar {
+  background: #111;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  cursor: grab;
+}
+.close {
+  position: absolute;
+  top: 30px;
+  left: 145px;
+  color: #000000;
+  font-size: 28px;
+  cursor: pointer;
+}
+.content {
+  padding: 15px;
+}
+/* Ẩn hiện nội dung tab chung */
+.tab-content {
+  display: none;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+.tab-content.active {
+  display: block;
+}
+/* Container cho các nút Tab */
+.gallery-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+.tab-btn {
+  padding: 8px 15px;
+  border: none;
+  background: #534d4d;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.tab-btn.active {
+  background: #ff5722;
+  color: white;
+}
+/*    5. KHU VỰC GAME (MINIGAME) */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 20px;
+  text-align: center;
+}
+.game-item {
+  font-size: 35px;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(120,200,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  transition: 0.2s;
+}
+.game-item:hover {
+  transform: scale(1.1);
+}
+.food {
+  opacity: 0.3;
+  filter: grayscale(1);
+  pointer-events: none;
+}
+.food.locked {
+  opacity: 0.2;
+  filter: grayscale(100%);
+}
+.food.unlocked {
+  opacity: 1;
+  filter: none;
+  pointer-events: auto;
+}
+.game-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(8px);
+}
+.game-box {
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center; 
+  border: 3px solid #00c8ff;
+  background: rgba(20, 20, 30, 0.6);
+  backdrop-filter: blur(12px);
+}
+.game-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+#gameArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#ingredientPool {
+  width: 40%;
+}
+#dropZone {
+  width: 220px;
+  height: 220px;
+  border: 2px dashed white;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+#dropZone img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.drop-hint {
+  position: absolute;
+  bottom: 8px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+#dishGray {
+  filter: grayscale(1) brightness(0.5);
+}
+#dishColor {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* NGUYÊN LIỆU (INGREDIENT BUTTONS) */
+#ingredientContainer {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 12px;
+}
+.ing-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 200, 255, 0.4);
+  background: linear-gradient(145deg, rgba(0,120,200,0.6), rgba(0,60,120,0.6));
+  backdrop-filter: blur(10px);
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.ing-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 200, 255, 0.6);
+}
+.ing-icon {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+.ing-text {
+  font-size: 11px;
+  text-align: center;
+}
+.ing-img {
+  width: 60px;
+  cursor: grab;
+  user-select: none;
+}
+.ing-img:active {
+  cursor: grabbing;
+}
+/*    6. BẢNG THÔNG TIN MÓN ĂN (MODAL 3D) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); 
+}
+.modal-content {
+  position: relative;
+  margin: 0 auto;
+  top: 10vh; 
+  width: 80vw; 
+  height: 80vh;
+  background-image: var(--modal-bg); 
+  background-size: contain; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent; 
+  border-radius: 15px;
+}
+/* Layout Container (Collapse Fix gộp vào đây) */
+.food-info-container {
+  display: flex;
+  flex-direction: row; 
+  gap: 20px;           
+  width: 100%;
+  height: 100%;
+  align-items: flex-start; 
+}
+.left-panel {
+  flex: 1; 
+  width: 30%; 
+  min-width: 250px; 
+  max-width: 300px; 
+  position: relative;
+  left: 150px; 
+  top: 175px;  
+  max-height: 70vh; 
+  overflow-y: auto; 
+}
+.right-panel {
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.panel-group * {
+  font-family: 'Montserrat', sans-serif !important; 
+}
+.panel-group .panel {
+  margin-bottom: 4px !important; 
+  border-radius: 4px;
+}
+.panel-default > .panel-heading {
+  padding: 8px 12px; 
+}
+.panel-title > a {
+  font-size: 14px; 
+  font-weight: 600;
+}
+.panel-body {
+  padding: 10px 12px; 
+  font-size: 13px; 
+  line-height: 1.4; 
+  max-height: 200px; 
+  overflow-y: auto; 
+}
+.panel-default > .panel-collapse .panel-body ul {
+  list-style-type: "- " !important; 
+  padding-left: 10px !important; 
+  margin-top: 3px !important; 
+}
+.panel-default > .panel-collapse .panel-body ul li {
+  margin-bottom: 8px !important; 
+  line-height: 1.0 !important; 
+}
+/* Link video */
+#clipContent a {
+  color: hsl(267, 100%, 62%) !important; 
+  text-decoration: none !important; 
+  font-weight: bold; 
+  transition: all 0.3s ease; 
+}
+#clipContent a:hover {
+  color: #cd212a !important; 
+  text-decoration: underline !important; 
+}
+/* Layout 3D Container */
+.custom-layout {
+  position: relative; 
+}
+#modelContainer {
+  flex: 1;
+  position: absolute;
+  top: 23.5%;      
+  right: 11%;     
+  width: 45%;    
+  height: 53.5%;   
+  overflow: hidden !important; 
+  z-index: 10;
+}
+#modelContainer canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+}
+#muteBtn {
+  position: static;
+}
+/*    7. THEME MÀU SẮC RIÊNG CHO TỪNG MÓN ĂN */
+/* 🇲🇽 BURRITO - MEXICO (food1) */
+.modal-content.food1 .panel-default:nth-child(odd) > .panel-heading { background-color: #009045 !important; }
+.modal-content.food1 .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #07aa56 !important; }
+.modal-content.food1 .panel-default:nth-child(even) > .panel-heading { background-color: #ce1126 !important; }
+.modal-content.food1 .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: #db1b31 !important; }
+/* 🇺🇸 EMPANADA - ARGENTINA (food2) */
+.modal-content.food2 .panel-default:nth-child(odd) > .panel-heading { background-color: #74acdf !important; }
+.modal-content.food2 .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #8ec4f7 !important; }
+.modal-content.food2 .panel-default:nth-child(even) > .panel-heading { background-color: #f6b40e !important; }
+.modal-content.food2 .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: #f6b40e !important; }
+/* 🇹🇭 PAD THAI - THÁI LAN (food3) */
+.modal-content.food3 .panel-default:nth-child(odd) > .panel-heading { background-color: #2d2a4a !important; }
+.modal-content.food3 .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #2d2a4a !important; }
+.modal-content.food3 .panel-default:nth-child(even) > .panel-heading { background-color: #a51931 !important; }
+.modal-content.food3 .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: #bb2c44 !important; }
+/* 🇮🇹 SPAGHETTI - Ý (food4) */
+.modal-content.food4 .panel-default:nth-child(odd) > .panel-heading { background-color: #009045 !important; }
+.modal-content.food4 .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #08b159 !important; }
+.modal-content.food4 .panel-default:nth-child(even) > .panel-heading { background-color: #cc2a36 !important; }
+.modal-content.food4 .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: rgb(243, 49, 71) !important; }
+/* 🇯🇵 TAKOYAKI - NHẬT BẢN (food5) */
+.modal-content.food5 .panel-default:nth-child(odd) > .panel-heading { background-color: #bc002d !important; }
+.modal-content.food5 .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #d80c3c !important; }
+.modal-content.food5 .panel-default:nth-child(even) > .panel-heading { background-color: #d82558 !important; }
+.modal-content.food5 .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: #eb3568 !important; }
+/* MÀU CHỮ CHUNG CHO TẤT CẢ CÁC MÓN ĂN */
+.modal-content[class*="food"] .panel-title a,
+.modal-content[class*="food"] .panel-body,
+.modal-content[class*="food"] .panel-body p,
+.modal-content[class*="food"] .panel-body li,
+.modal-content[class*="food"] #clipContent a {
+  color: #fdfdfd !important; 
+}
+/*    8. THÀNH TỰU (ACHIEVEMENTS) & KHÁC */
+.achievement-content {
+  padding: 20px;
+  background-color: #f8f9fa;
+  overflow-y: auto;
+  height: 100%;
+}
+.gallery-title {
+  text-align: center;
+  color: #ff5722;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+}
+.achieve-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 2px solid #eee;
+  transition: transform 0.2s;
+}
+.achieve-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+.achieve-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #ffeb3b;
+  margin-bottom: 10px;
+}
+.achieve-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  color: #333;
+}
+.achieve-card p {
+  margin: 0 0 5px 0;
+  font-size: 12px;
+  color: #555;
+}
+.achieve-card .hint {
+  font-size: 11px;
+  color: #009688;
+  font-style: italic;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed #ddd;
+}
+.achieve-card.locked {
+  background: #e9ecef;
+  border-color: #ccc;
+}
+.achieve-card.locked h4, 
+.achieve-card.locked p {
+  color: #888;
+}
+.achieve-card.locked .achieve-img {
+  filter: grayscale(100%); 
+  border-color: #aaa;
+  opacity: 0.6;
+}
+.achieve-card.locked .hint {
+  filter: blur(4px); 
+  user-select: none;
+}
+#universe-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -3; 
+  background-image: url('/earth/win2.jpg'); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  opacity: 0.5; 
+  filter: brightness(0.47) contrast(2.5); 
+}
+#space-gif {
+  position: fixed;
+  right: 90px;  
+  top: 120px;    
+  width: 120px;  
+  pointer-events: none;
+  transform: scale(1.8);
+  z-index: 5;    
+}
+.note {
+  position: fixed;
+  top: 200px;
+  left: 200px;
+  width: 120px;
+  cursor: grab;
+  z-index: 20; /* Tăng z-index để đè lên hint */
+  transform: scale(1.9);
+}
+.note img { 
+  width: 100%; 
+}
+#hidden-hint {
+  position: absolute; 
+  top: 200px;   
+  left: 180px; 
+  z-index: 1; 
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 2px dashed #999;
+  font-weight: bold;
+  font-size: 11px;
+  color: #333;
+}
+/*    9. ẢNH PHẠT DYNAMIC */
+.penalty-gif-dynamic {
+  position: fixed; 
+  z-index: 99999; 
+  max-width: 250px;
+  max-height: 250px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  cursor: pointer;
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+/*    10. ĐIỀU CHỈNH RESPONSIVE (MOBILE) */
+@media (max-width: 768px) {
+  .food-info-container {
+    flex-direction: column-reverse; 
+  }
+  .left-panel, .right-panel {
+    width: 100%; 
+    max-height: none; 
+    left: auto; /* Bỏ left/top cứng trên mobile */
+    top: auto;
+  }
+  #modelContainer {
+    position: relative; /* Chuyển sang relative trên mobile để không bị bay lung tung */
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: 300px; 
+  }
+}

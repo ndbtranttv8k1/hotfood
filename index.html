@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earth</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./src/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <div id="startScreen">
+    <img src="/UI/wwin.gif" id="startImage" alt="Start Screen" />
+    <button id="startBtn">_______</button>
+  </div>
+
+  <audio id="bgm" src="/earth/Webcore.mp3" loop></audio>
+  
+  <div id="desktopUI">
+    <div class="icon" data-app="app1">
+      <img src="/UI/3.png" alt="Info" class="app-img">
+      <span>Info</span>
+    </div>
+    
+    <div class="icon" data-app="app2">
+      <img src="/UI/2.png" alt="Gallery" class="app-img">
+      <span>Gallery</span>
+    </div>
+    
+    <div class="icon" id="gameIcon">
+      <img src="/UI/1.png" alt="Game" class="app-img">
+      <span>Game</span>
+    </div>
+  </div>
+
+  <div id="clock"></div>
+  
+  <div id="musicPanel">
+    <div class="musicArt">
+      <img src="/UI/example.jpg" alt="Album Art" />
+    </div>
+    <div class="musicInfo">
+      <div class="title">PLAYLIST</div>
+      <div class="subtitle">Ambient Space Sound</div>
+    </div>
+    <div class="musicControls">
+      <button id="playBtn">▶</button>
+      <button id="nextBtn">⏭</button>
+    </div>
+  </div>
+
+  <div class="appModal" id="app1">
+    <div class="window">
+      <div class="title-bar">
+        <span>Info - Sổ tay công thúc</span>
+        <button class="closeApp">✕</button>
+      </div>
+      <div class="content" style="padding: 15px; text-align: left; line-height: 1.6; overflow-y: auto;">
+        <h3 style="margin-top: 0; color: #ff9800; text-align: center;">📖 SỔ TAY CÔNG THỨC</h3>
+        <p><em>Hãy tìm và ghép đúng 5 nguyên liệu dựa trên các manh mối sau để nấu thành công:</em></p>
+        <ul style="padding-left: 20px;">
+          <li style="margin-bottom: 10px;">
+            <strong>🌮 Món số 1 (Mexico):</strong> Cần vỏ mềm gói nhân thịt đậm đà, lá xanh thanh mát, vị béo của sữa và chút sốt đỏ chua ngọt.
+          </li>
+          <li style="margin-bottom: 10px;">
+            <strong>🥟 Món số 2 (Mỹ Latinh):</strong> Chiếc bánh nướng hình bán nguyệt. Nhân bánh gồm thịt băm, trứng gà và bộ đôi củ gia vị thơm nức.
+          </li>
+          <li style="margin-bottom: 10px;">
+            <strong>🍜 Món số 3 (Thái Lan):</strong> Món xào quốc hồn quốc túy. Sợi dai mềm, hải sản vỏ cứng, trứng, sắc xanh và một loại hạt giòn.
+          </li>
+          <li style="margin-bottom: 10px;">
+            <strong>🍝 Món số 4 (Ý):</strong> Sợi dài óng ả tắm trong sốt đỏ sẫm cùng thịt băm, thoang thoảng hương tỏi và lớp màng béo ngậy.
+          </li>
+          <li style="margin-bottom: 10px;">
+            <strong>🐙 Món số 5 (Nhật Bản):</strong> Flour + Egg + Onion + Spring onion + Octopus!
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="appModal" id="app2">
+    <div class="window">
+      <div class="title-bar">
+        <span>Bộ Sưu Tập Ẩm Thực 🏆</span>
+        <button class="closeApp">✕</button>
+      </div>
+      <div class="content achievement-content">
+        <div class="gallery-tabs">
+          <button class="tab-btn active" onclick="openTab('main-menu')">Thực Đơn Chính</button>
+          <button class="tab-btn" onclick="openTab('secret-menu')">Công Thức Bí Mật</button>
+        </div>
+
+        <div id="main-menu" class="tab-content active">
+          <div class="achievement-grid">
+            <div class="achieve-card locked" id="card-Burrito">
+              <img src="/cook/yeah.jpg" class="achieve-img">
+              <h4>Burrito</h4>
+              <p>Món cuộn Mexico</p>
+            </div>
+            <div class="achieve-card locked" id="card-Empadana">
+              <img src="/cook/yeah.jpg" class="achieve-img">
+              <h4>Empanada</h4>
+              <p>Bánh nướng Latinh</p>
+            </div>
+            <div class="achieve-card locked" id="card-Padthai">
+              <img src="/cook/yeah.jpg" class="achieve-img">
+              <h4>Pad Thai</h4>
+              <p>Mì xào Thái Lan</p>
+            </div>
+            <div class="achieve-card locked" id="card-Spaghetti">
+              <img src="/cook/yeah.jpg" class="achieve-img">
+              <h4>Spaghetti</h4>
+              <p>Mì Ý truyền thống</p>
+            </div>
+            <div class="achieve-card locked" id="card-Takoyaki">
+              <img src="/cook/yeah.jpg" class="achieve-img">
+              <h4>Takoyaki</h4>
+              <p>Bánh bạch tuộc Nhật</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="secret-menu" class="tab-content">
+          <div class="achievement-grid">
+            <div class="achieve-card locked" id="card-secret1">
+              <img src="/cook/banhmi.jpg" alt="Bánh mì" class="achieve-img">
+              <h4>Bánh mì</h4>
+              <p><strong>Cách đạt:</strong> Nấu thành công Bánh mì Việt Nam.</p>
+              <p class="hint">Bột mì + Trứng + Sốt cà chua + Xà lách + Thịt bò</p>
+            </div>
+
+            <div class="achieve-card locked" id="card-secret2">
+              <img src="/cook/pho.jpg" alt="Phở" class="achieve-img">
+              <h4>Phở</h4>
+              <p><strong>Cách đạt:</strong> Nấu một món mì của Việt Nam.</p>
+              <p class="hint">Mì + Thịt bò + Hành lá + Hành tây + Tỏi</p>
+            </div>
+
+            <div class="achieve-card locked" id="card-secret3">
+              <img src="/cook/secret3.jpg" alt="Thịt huh???" class="achieve-img">
+              <h4>Why would you do this</h4>
+              <p><strong>Cách đạt:</strong> no</p>
+              <p class="hint">dawg</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="myModal" class="modal">
+    <div class="modal-content custom-layout">
+      <span class="close">&times;</span>
+        
+      <div class="food-info-container">
+        <div class="left-panel">
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseIntro">Giới thiệu</a>
+                </h4>
+              </div>
+              <div id="collapseIntro" class="panel-collapse collapse">
+                <div class="panel-body" id="introContent">
+                  Đang tải...
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseIngred">Nguyên liệu</a>
+                </h4>
+              </div>
+              <div id="collapseIngred" class="panel-collapse collapse">
+                <div class="panel-body" id="ingredContent">
+                  Đang tải...
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseClip">Clip irl</a>
+                </h4>
+              </div>
+              <div id="collapseClip" class="panel-collapse collapse">
+                <div class="panel-body" id="clipContent">
+                  Đang tải...
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-panel">
+          <div id="modelContainer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="gameHub" class="appModal">
+    <div class="window">
+      <div class="title-bar">
+        <span>Game Hub</span>
+        <button class="closeApp" id="closeGameHub">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="food4GameModal" class="game-modal">
+    <div class="game-box">
+      <div class="game-layout">
+        <div id="ingredientContainer"></div>
+        <div id="dropZone">
+          <img id="dishGray" alt="Dish Gray">
+          <img id="dishColor" alt="Dish Color">
+          <div class="drop-hint">Drop here</div>
+        </div>
+      </div>
+      <div id="currentSequence">Các bước:</div>
+      <button id="closeFood4Game">Close</button>
+    </div>
+  </div>
+
+  <div id="universe-bg"></div>
+  
+  <div id="hidden-hint">
+    🌾 + 🥩 + 🥬 + 🥚 + 🍅
+  </div>
+
+  <div class="note" id="note">
+    <img src="/UI/stickal.png" alt="Sticky Note">
+  </div>
+  
+  <img id="space-gif" src="/UI/space.gif" alt="Space GIF" />
+  
+  <canvas class="webgl"></canvas>
+
+  <script>
+    function openTab(tabId) {
+      // Ẩn tất cả nội dung tab
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      // Bỏ trạng thái active (màu cam) ở tất cả nút
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      // Hiển thị tab được click
+      document.getElementById(tabId).classList.add('active');
+      // Tô màu cam cho nút vừa click
+      event.currentTarget.classList.add('active');
+    }
+  </script>
+  
+  <script type="module" src="./src/script.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</body>
+</html>
