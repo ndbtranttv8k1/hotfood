@@ -2,7 +2,6 @@
 
 Khám phá các combo nguyên liệu để mở khóa món ăn với Window XP UI style
 Cẩn thận quảng cáo pop-up nếu bạn sai nhiều quá
-Trước khi nhìn KEY thì hãy tự mình khám phá nhé :P
 
 ## Run
 
