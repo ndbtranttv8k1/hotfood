@@ -4,31 +4,31 @@ export const foodData = {
         title: "BURRITO",
         intro: "Món ăn Mexico gồm bánh tortilla cuộn nhân như thịt, đậu, cơm và rau, tiện lợi và đậm đà hương vị.",
         ingredients: ["Bột mì", "Thịt bò", "Sốt cà chua", "Phô mai", "Xà lách"],
-        clip: "<p>Xem video nấu mì Ý tại đây: <br><a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='_blank'>[Nhấn vào để xem video]</a></p>"
+        clip: "<p>Xem video nấu mì Ý tại đây: <br><a href='https://www.youtube.com/watch?v=fxs1_aljKn8' target='_blank'>[Nhấn vào để xem video]</a></p>"
     },
     Empadana: {
         title: "EMPANADA",
         intro: "Bánh nướng hoặc chiên có vỏ bột giòn, bên trong nhân mặn như thịt, phô mai hoặc rau, phổ biến ở các nước Mỹ Latinh.",
         ingredients: ["Bột mì", "Thịt bò", "Tỏi", "Hành tây", "Trứng"],
-        clip: "<p>Xem video nấu mì Ý tại đây: <br><a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='_blank'>[Nhấn vào để xem video]</a></p>"
+        clip: "<p>Xem video nấu mì Ý tại đây: <br><a href='https://www.youtube.com/watch?v=HHsmRoHE7K0' target='_blank'>[Nhấn vào để xem video]</a></p>"
     },
     Padthai: {
         title: "PADTHAI",
         intro: "Món mì xào nổi tiếng của Thái Lan, kết hợp vị chua, ngọt, mặn hài hòa với tôm, trứng, đậu phụ và lạc rang.",
         ingredients: ["Mì", "Tôm", "Trứng", "Hành lá", "Đậu phộng"],
-        clip: "<p>Xem video nấu mì Ý tại đây: <br><a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='_blank'>[Nhấn vào để xem video]</a></p>"
+        clip: "<p>Xem video nấu mì Ý tại đây: <br><a href='https://www.youtube.com/watch?v=BzyI8DZ9DaU' target='_blank'>[Nhấn vào để xem video]</a></p>"
     },
     Spaghetti: {
         title: "SPAGHETTI",
         intro: "Sợi mì Ý vàng óng, dai mềm kết hợp cùng sốt cà chua thịt bò băm đậm đà chuẩn vị.",
         ingredients: ["Mì", "Thịt bò", "Sốt cà chua", "Tỏi", "Phô mai"],
-        clip: "<p>Xem video nấu mì Ý tại đây: <br><a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='_blank'>[Nhấn vào để xem video]</a></p>"
+        clip: "<p>Xem video nấu mì Ý tại đây: <br><a href='https://www.youtube.com/watch?v=dKtHsNNp9yk' target='_blank'>[Nhấn vào để xem video]</a></p>"
     },
     Takoyaki: {
         title: "TAKOYAKI",
         intro: "Bánh bột viên của Nhật Bản, bên trong có bạch tuộc, mềm bên trong và giòn nhẹ bên ngoài, thường ăn kèm sốt đậm đà.",
         ingredients: ["Bột mì", "Bạch tuộc", "Hành tây", "Trứng", "Hành lá"],
-        clip: "<p>Xem video nấu mì Ý tại đây: <br><a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='_blank'>[Nhấn vào để xem video]</a></p>"
+        clip: "<p>Xem video nấu mì Ý tại đây: <br><a href='https://www.youtube.com/watch?v=-d8nTfzxES8' target='_blank'>[Nhấn vào để xem video]</a></p>"
     },
 };
 // RECIPE //
