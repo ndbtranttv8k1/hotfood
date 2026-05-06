@@ -173,7 +173,9 @@ export function openFoodModalHTML(foodKey, data) {
     // Reset Accordion Bootstrap
     if(window.jQuery) {
         $('.panel-collapse').removeClass('in').css('height', '');
-        $('.panel-title > a').addClass('collapsed');
+        $('.panel-title > a')
+            .addClass('collapsed')
+            .attr('aria-expanded', 'false');
     }
     // XỬ LÝ MÀU SẮC RIÊNG (THEME)
     const modalContent = document.querySelector('.modal-content');
