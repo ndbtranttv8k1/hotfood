@@ -487,31 +487,35 @@ body {
   position: static;
 }
 /*    7. THEME MÀU SẮC RIÊNG CHO TỪNG MÓN ĂN */
-/* 🇲🇽 BURRITO - MEXICO (food1) */
-.modal-content.food1 .panel-default:nth-child(odd) > .panel-heading { background-color: #009045 !important; }
-.modal-content.food1 .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #07aa56 !important; }
-.modal-content.food1 .panel-default:nth-child(even) > .panel-heading { background-color: #ce1126 !important; }
-.modal-content.food1 .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: #db1b31 !important; }
-/* 🇺🇸 EMPANADA - ARGENTINA (food2) */
-.modal-content.food2 .panel-default:nth-child(odd) > .panel-heading { background-color: #74acdf !important; }
-.modal-content.food2 .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #8ec4f7 !important; }
-.modal-content.food2 .panel-default:nth-child(even) > .panel-heading { background-color: #f6b40e !important; }
-.modal-content.food2 .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: #f6b40e !important; }
-/* 🇹🇭 PAD THAI - THÁI LAN (food3) */
-.modal-content.food3 .panel-default:nth-child(odd) > .panel-heading { background-color: #2d2a4a !important; }
-.modal-content.food3 .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #2d2a4a !important; }
-.modal-content.food3 .panel-default:nth-child(even) > .panel-heading { background-color: #a51931 !important; }
-.modal-content.food3 .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: #bb2c44 !important; }
-/* 🇮🇹 SPAGHETTI - Ý (food4) */
-.modal-content.food4 .panel-default:nth-child(odd) > .panel-heading { background-color: #009045 !important; }
-.modal-content.food4 .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #08b159 !important; }
-.modal-content.food4 .panel-default:nth-child(even) > .panel-heading { background-color: #cc2a36 !important; }
-.modal-content.food4 .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: rgb(243, 49, 71) !important; }
-/* 🇯🇵 TAKOYAKI - NHẬT BẢN (food5) */
-.modal-content.food5 .panel-default:nth-child(odd) > .panel-heading { background-color: #bc002d !important; }
-.modal-content.food5 .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #d80c3c !important; }
-.modal-content.food5 .panel-default:nth-child(even) > .panel-heading { background-color: #d82558 !important; }
-.modal-content.food5 .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: #eb3568 !important; }
+/* 🇲🇽 BURRITO */
+.modal-content.Burrito .panel-default:nth-child(odd) > .panel-heading { background-color: #009045 !important; }
+.modal-content.Burrito .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #07aa56 !important; }
+.modal-content.Burrito .panel-default:nth-child(even) > .panel-heading { background-color: #ce1126 !important; }
+.modal-content.Burrito .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: #db1b31 !important; }
+
+/* 🇦🇷 EMPANADA */
+.modal-content.Empadana .panel-default:nth-child(odd) > .panel-heading { background-color: #74acdf !important; }
+.modal-content.Empadana .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #8ec4f7 !important; }
+.modal-content.Empadana .panel-default:nth-child(even) > .panel-heading { background-color: #f6b40e !important; }
+.modal-content.Empadana .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: #f6b40e !important; }
+
+/* 🇹🇭 PADTHAI */
+.modal-content.Padthai .panel-default:nth-child(odd) > .panel-heading { background-color: #2d2a4a !important; }
+.modal-content.Padthai .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #2d2a4a !important; }
+.modal-content.Padthai .panel-default:nth-child(even) > .panel-heading { background-color: #a51931 !important; }
+.modal-content.Padthai .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: #bb2c44 !important; }
+
+/* 🇮🇹 SPAGHETTI */
+.modal-content.Spaghetti .panel-default:nth-child(odd) > .panel-heading { background-color: #009045 !important; }
+.modal-content.Spaghetti .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #08b159 !important; }
+.modal-content.Spaghetti .panel-default:nth-child(even) > .panel-heading { background-color: #cc2a36 !important; }
+.modal-content.Spaghetti .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: rgb(243, 49, 71) !important; }
+
+/* 🇯🇵 TAKOYAKI */
+.modal-content.Takoyaki .panel-default:nth-child(odd) > .panel-heading { background-color: #bc002d !important; }
+.modal-content.Takoyaki .panel-default:nth-child(odd) > .panel-collapse .panel-body { background-color: #d80c3c !important; }
+.modal-content.Takoyaki .panel-default:nth-child(even) > .panel-heading { background-color: #d82558 !important; }
+.modal-content.Takoyaki .panel-default:nth-child(even) > .panel-collapse .panel-body { background-color: #eb3568 !important; }
 /* MÀU CHỮ CHUNG CHO TẤT CẢ CÁC MÓN ĂN */
 .modal-content[class*="food"] .panel-title a,
 .modal-content[class*="food"] .panel-body,
@@ -676,4 +680,11 @@ body {
     width: 100%;
     height: 300px; 
   }
+}
+
+/* FIX MÀU CHỮ CHO COLLAPSE */
+.modal-content .panel-heading,
+.modal-content .panel-title a,
+.modal-content .panel-body {
+  color: #fdfdfd !important;
 }
